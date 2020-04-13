@@ -12,17 +12,13 @@ public class Main {
 
         System.out.println(human);
 
-
         HumanBuilderV2.Human human1 = new HumanBuilderV2().Builder(elem -> {
-            elem.firstName("test");
-            elem.lastName("test");
+            elem.firstName("Test");
+            elem.lastName("Test");
             elem.age(25);
             elem.address("Test");
         }).build();
 
-
         System.out.println(human1);
-
-
     }
 }
