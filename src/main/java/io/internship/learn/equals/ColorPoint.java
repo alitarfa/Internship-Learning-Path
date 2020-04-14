@@ -5,6 +5,7 @@ import java.awt.*;
 public class ColorPoint extends Point {
 
     private final Color color;
+    private ColorPoint point;
 
 
     public ColorPoint(int x, int y, Color color) {
@@ -12,5 +13,12 @@ public class ColorPoint extends Point {
         this.color = color;
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Point))
+            return false;
+        if (!(o instanceof ColorPoint))
+            return o.equals(this);
+        return super.equals(o) && ((ColorPoint) o).color == color;
+    }
 }

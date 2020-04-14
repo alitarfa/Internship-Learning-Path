@@ -14,7 +14,7 @@ public class Main {
          * This will give a true Result, straightforward
          *  this mean the properties of equals {Reflexivity | Symmetric | Transitivity } are respected
          */
-        System.out.println(string.equals(string2));
+        // System.out.println(string.equals(string2));
 
 
         /**
@@ -60,5 +60,8 @@ public class Main {
          *   will give us false ,
          */
 
+        System.out.println(colorPoint1.equals(point));
+        System.out.println(point.equals(colorPoint2));
+        System.out.println(colorPoint1.equals(colorPoint2));
     }
 }
