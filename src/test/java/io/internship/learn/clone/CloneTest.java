@@ -18,7 +18,7 @@ public class CloneTest {
         /**
          * The Shallow is a one way to create a copy of an object
          * But this type will effect on the copied version  because
-         * we have just assinged the refrence of the first one to the new one
+         * we have just assigned the reference of the first one to the new one
          * this mean any changes on second one will affect on the First Object
          */
 
