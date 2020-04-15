@@ -49,9 +49,9 @@ public class CloneTest {
 
 
     /**
-     * The clone() method of Object class it's reponsable for create a deep copy for a given object
+     * The clone() method of Object class it's responsible for creating a deep copy for a given object
      * But as th Effective Java said it's not safe to use it in some cases because in case like we have
-     * attrbutes with references not primitives will fail like having a list inside Person and this list it's a list of
+     * attributes with references not primitives will fail like having a list inside Person and this list it's a list of
      * Objects , so the Best way from Effective Java is the Use the Constructor Copy or using another Libraries to do this things for us
      * @throws CloneNotSupportedException
      */
