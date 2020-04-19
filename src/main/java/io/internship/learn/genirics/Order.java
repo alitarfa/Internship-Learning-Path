@@ -1,4 +1,4 @@
-package io.internship.learn.enumTest;
+package io.internship.learn.genirics;
 
 import lombok.Builder;
 import lombok.Data;
@@ -10,8 +10,6 @@ import lombok.ToString;
 public class Order {
 
     private String id;
+    private String restaurantID;
     private String idUser;
-    private String idRestaurant;
-    private long timeStamp;
-    private OrderStatus orderStatus;
 }
