@@ -16,5 +16,13 @@ public class Main {
             // on aura besion de ca car dans certain cas on a oblige de consulter la trace de les exceptions
             Throwable[] suppressed = e.getSuppressed();
         }
+
+        // test auto close
+        try (ResourceTest test = new ResourceTest()) {
+
+        } catch (Exception e) {
+
+        }
+
     }
 }
