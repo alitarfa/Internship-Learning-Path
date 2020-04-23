@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -27,9 +28,9 @@ public class Streams {
     @BeforeEach
     public void init() {
         persones = Arrays.asList(
-                new Persone(1, "P1", "A1", 23),
-                new Persone(2, "P2", "A2", 24),
-                new Persone(3, "P3", "A3", 25));
+                new Persone(1, "B", "A1", 23),
+                new Persone(2, "C", "A2", 24),
+                new Persone(3, "A", "A3", 25));
     }
 
     @Test
@@ -125,6 +126,29 @@ public class Streams {
                 .peek(System.out::println)
                 .collect(Collectors.toList());
 
+
+    }
+
+
+    // Test the Comparison Operation
+    @Test
+    public void testSorted() {
+        persones.stream()
+                .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
+                .collect(Collectors.toList()).forEach(System.out::println);
+
+    }
+
+    @Test
+    public void testMinMax() {
+
+        Persone persone = persones.stream()
+                .min(Comparator.comparing(Persone::getAge)).get();
+        assertEquals(persone, persones.get(0));
+
+        Persone persone1 = persones.stream()
+                .max(Comparator.comparing(Persone::getAge)).get();
+        assertEquals(persone1, persones.get(2));
 
     }
 
