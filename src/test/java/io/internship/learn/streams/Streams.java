@@ -10,16 +10,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Streams {
 
@@ -29,7 +27,7 @@ public class Streams {
     public void init() {
         persones = Arrays.asList(
                 new Persone(1, "B", "A1", 23),
-                new Persone(2, "C", "A2", 24),
+                new Persone(2, "A", "A2", 24),
                 new Persone(3, "A", "A3", 25));
     }
 
@@ -150,6 +148,76 @@ public class Streams {
                 .max(Comparator.comparing(Persone::getAge)).get();
         assertEquals(persone1, persones.get(2));
 
+    }
+
+
+    @Test
+    public void testMatchAll() {
+        boolean result = persones.stream().allMatch(persone -> persone.getAge() % 2 == 0);
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testAnyMatch() {
+        boolean result = persones.stream().anyMatch(persone -> persone.getAge() % 2 == 0);
+        assertTrue(result);
+    }
+
+    @Test
+    public void testIntStream() {
+        // creation of intStream
+        int result = persones.stream().mapToInt(Persone::getAge)
+                .sum();
+        assertEquals(result, 72);
+
+        IntStream.of(1, 2, 3);
+        IntStream.range(1, 20);
+    }
+
+
+    @Test
+    public void testReduce() {
+        Integer result = persones.stream()
+                .map(Persone::getAge)
+                .reduce(Integer::sum)
+                .get();
+        assertEquals(result, 72);
+
+    }
+
+    @Test
+    public void testToSet() {
+        Set<String> reuslt = persones.stream()
+                .map(Persone::getName)
+                .collect(Collectors.toSet());
+        assertEquals(reuslt.size(), 2);
+    }
+
+    @Test
+    public void testCollectors() {
+        Collection<Integer> result = persones.stream()
+                .map(Persone::getAge)
+                .collect(Collectors.toCollection(HashSet::new));
+        result.forEach(System.out::println);
+    }
+
+    @Test
+    public void testsummarizingDouble() {
+        IntSummaryStatistics result = persones.stream()
+                .collect(Collectors.summarizingInt(Persone::getAge));
+        /**
+         * Interesting method to get the Max, Min, Avg, ...etc all this information can be generate just by applying
+         * the SummarizingInt method
+         */
+    }
+
+    @Test
+    public void groupingBy() {
+        Map<String, List<Persone>> result = persones.stream()
+                .collect(Collectors.groupingBy(Persone::getName));
+        assertEquals(result.get("A").size(), 2);
+        assertEquals(result.get("B").size(), 1);
     }
 
 
