@@ -1,7 +1,6 @@
 package io.internship.learn.example.java.brain.course;
 
 import io.internship.learn.example.java.brain.CrudMethods;
-import io.internship.learn.example.java.brain.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +10,9 @@ import java.util.Optional;
 @Service
 public class CourseService implements CrudMethods<Course> {
 
-
-    private final CourseRepository repository;
-
     @Autowired
-    public CourseService(CourseRepository repository) {
-        this.repository = repository;
-    }
+    private CourseRepository repository;
+
 
     @Override
     public Course add(Course model) {
@@ -41,5 +36,10 @@ public class CourseService implements CrudMethods<Course> {
 
     public List<Course> findByTopicName(String name) {
         return repository.findByTopicName(name);
+    }
+
+
+    public Optional<Course> findByName(String name){
+        return repository.findByName(name);
     }
 }
