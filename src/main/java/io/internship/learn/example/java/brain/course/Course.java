@@ -15,6 +15,6 @@ public class Course {
     private String name;
     private String description;
 
-    @OneToMany
-    private List<Topic> topics;
+    @ManyToOne
+    private Topic topic;
 }

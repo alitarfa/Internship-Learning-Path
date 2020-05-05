@@ -1,5 +1,6 @@
 package io.internship.learn.example.java.brain.course;
 
+ import io.internship.learn.example.java.brain.topic.Topic;
  import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,11 @@ public class CourseController {
     @PutMapping("/course")
     public Course update(@RequestBody Course model) {
         return service.update(model);
+    }
+
+
+    @GetMapping("/topic/{name}/course")
+    public List<Course> findByTopicId(@PathVariable String name) {
+        return service.findByTopicName(name);
     }
 }
